@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    expose:
+    - "${POSTGRES_PORT}"
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    volumes:
+      - ./backups:/home/backups
+    command: -p ${POSTGRES_PORT}
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PORT: ${PORT}
+    command: > 
+      sh -c "python wait_for_postgres.py &&
+            ./manage.py makemigrations --noinput &&
+            ./manage.py migrate &&
+            ./manage.py collectstatic  --noinput &&
+            ./manage.py runserver 0.0.0.0:${PORT} --insecure"
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - .:/web
+    depends_on:
+      - db
