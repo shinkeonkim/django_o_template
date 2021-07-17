@@ -3,6 +3,7 @@
 import os
 import sys
 import dotenv
+from django.core.management.commands.runserver import Command as runserver;
 
 def main():
     """Run administrative tasks."""
@@ -20,4 +21,5 @@ def main():
 
 if __name__ == '__main__':
     dotenv.read_dotenv()
+    runserver.default_port = os.environ.get("PORT")
     main()
