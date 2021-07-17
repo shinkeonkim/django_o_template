@@ -24,3 +24,12 @@ POSTGRES_CHECK_TIMEOUT = "30"
 POSTGRES_CHECK_INTERVAL = "1"
 ```
 
+## test coverage commad
+### run test
+> coverage run  manage.py test
+
+### coverage cli report
+> coverage report
+
+### coverage html report
+> coverage html

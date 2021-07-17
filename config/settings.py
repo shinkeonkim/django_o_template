@@ -16,6 +16,10 @@ AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'config.urls'
 
+CUSTOM_APPS = [
+    'users',
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + CUSTOM_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,24 +60,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-if USE_DOCKER:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get('POSTGRES_NAME'),
-            "USER": os.environ.get('POSTGRES_USER'),
-            "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
-            "HOST": "db",
-            "PORT": os.environ.get('POSTGRES_PORT'),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get('POSTGRES_NAME'),
+        "USER": os.environ.get('POSTGRES_USER'),
+        "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
+        "HOST": "db",
+        "PORT": os.environ.get('POSTGRES_PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+} if USE_DOCKER else {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
