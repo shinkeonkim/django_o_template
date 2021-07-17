@@ -1,13 +1,19 @@
 import os
 from pathlib import Path
 
+# django basic settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'TRUE'
 USE_DOCKER = os.environ.get('USE_DOCKER') == 'TRUE'
 
+# Deploy settings
 DEPLOY_URL = os.environ.get('DEPLOY_URL')
 ALLOWED_HOSTS = ['*', '127.0.0.1', DEPLOY_URL]
+
+# user model settings
+AUTH_USER_MODEL = 'users.User' 
+
 ROOT_URLCONF = 'config.urls'
 
 INSTALLED_APPS = [
