@@ -4,13 +4,13 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 
-from users.forms import CreationForm, EditionForm, PasswordEditionForm
+from users.forms import BaseCreationForm, BaseEditionForm, BasePasswordEditionForm
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-  form = EditionForm
-  add_form = CreationForm
-  change_password_form = PasswordEditionForm
+  form = BaseEditionForm
+  add_form = BaseCreationForm
+  change_password_form = BasePasswordEditionForm
 
   list_display = [
     'full_name',

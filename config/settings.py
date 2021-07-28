@@ -12,7 +12,7 @@ DEPLOY_URL = os.environ.get('DEPLOY_URL')
 ALLOWED_HOSTS = ['*', '127.0.0.1', DEPLOY_URL]
 
 # user model settings
-AUTH_USER_MODEL = 'users.User' 
+AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'config.urls'
 
@@ -93,11 +93,26 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = "ko-kr"
+TIME_ZONE = "Asia/Seoul"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# mailer settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS')
+EMAIL_HOST_USER = EMAIL_ADDRESS
+MAIL_USERNAME = EMAIL_ADDRESS
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+SERVER_EMAIL = EMAIL_ADDRESS
+DEFAULT_FORM_MAIL = os.environ.get('DEFAULT_FORM_MAIL')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
