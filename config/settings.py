@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [
@@ -99,10 +100,22 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-# mailer settings
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets'),
+]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
@@ -116,3 +129,10 @@ EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_ADDRESS
 DEFAULT_FORM_MAIL = os.environ.get('DEFAULT_FORM_MAIL')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# sass settings
+
+SASS_PROCESSOR_ENABLED = True
+SASS_OUTPUT_STYLE = 'compact'
+SASS_PRECISION = 8
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'assets')
