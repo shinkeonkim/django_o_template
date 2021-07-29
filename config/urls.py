@@ -6,7 +6,11 @@ from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
 
+from django.contrib import messages
+
+
 def dummy_main(request):
+    messages.success(request, 'test toast message')
     return render(request, 'main/index.html')
 
 

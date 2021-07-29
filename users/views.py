@@ -2,7 +2,7 @@ from users.forms import UserCreationForm, UserAuthenticationForm
 from django.http import request
 
 from django.contrib import auth, messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -74,6 +74,7 @@ class UserActivationView(BaseTemplateView):
             auth.login(request, user)
             self.logger.info(
                 'User %s(pk=%s) has been activated.' % (user, user.pk))
+            messages.success(request, '이메일이 인증 되었습니다.')
             return redirect('/')  # TODO: 메세지 추가하기
 
         return super(UserActivationView, self).get(request, *args, **kwargs)

@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
+
 # django basic settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -105,6 +108,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'node_modules'),
 ]
 
 STATICFILES_FINDERS = (
@@ -136,3 +140,14 @@ SASS_PROCESSOR_ENABLED = True
 SASS_OUTPUT_STYLE = 'compact'
 SASS_PRECISION = 8
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'assets')
+
+
+# 메세지 프레임워크 클래스 설정
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

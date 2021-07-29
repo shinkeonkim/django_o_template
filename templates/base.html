@@ -8,18 +8,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서비스 이름</title>
-  <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% sass_src 'scss/style.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'fomantic-ui-css/semantic.min.css' %}" rel="stylesheet" type="text/css" />
 
   {% block stylesheets %}
   {% endblock %}
 </head>
 <body>
+  {% include 'shared/toasts.html' %}
   <div class="test-wrapper">
     <span class="test"> TEST </span>
   </div>
   {% block content %}
   {% endblock %}
 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'fomantic-ui-css/semantic.min.js' %}"></script>
+  <script>
+    {% if messages %}
+      {% for message in messages %}
+        $('body')
+          .toast({
+            message: '{{ message }}',
+          });            
+      {% endfor %}
+    {% endif %}
+  </script>
   {% block scripts %}
   {% endblock %}
 </body>

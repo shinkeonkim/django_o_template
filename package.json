@@ -1,0 +1,22 @@
+{
+  "name": "django_o_template",
+  "version": "1.0.0",
+  "description": "creator: koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinkeonkim/django_o_template.git"
+  },
+  "author": "shinkeonkim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinkeonkim/django_o_template/issues"
+  },
+  "homepage": "https://github.com/shinkeonkim/django_o_template#readme",
+  "dependencies": {
+    "fomantic-ui-css": "^2.8.8"
+  }
+}
