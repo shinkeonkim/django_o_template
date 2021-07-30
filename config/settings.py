@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sass_processor',
+    'extra_views',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [
