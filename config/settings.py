@@ -5,11 +5,14 @@ from django.contrib.messages import constants as messages
 
 
 # django basic settings
+PROJECT_NAME = 'django_o_template'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'TRUE'
 USE_DOCKER = os.environ.get('USE_DOCKER') == 'TRUE'
 PORT = os.environ.get('PORT')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Deploy settings
 DEPLOY_URL = os.environ.get('DEPLOY_URL')
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django_unicorn',
     'django_extensions',
     'corsheaders',
+    'silk',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [
@@ -49,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 

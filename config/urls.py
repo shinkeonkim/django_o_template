@@ -24,6 +24,7 @@ urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('explorer/', include('explorer.urls')),
     path("unicorn/", include("django_unicorn.urls")),
+    path('silk/', include('silk.urls', 'silk')),
     re_path(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,
