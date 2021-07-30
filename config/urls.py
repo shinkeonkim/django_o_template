@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.static import serve
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
+import debug_toolbar
 
 
 from django.contrib import messages
@@ -18,6 +19,7 @@ urlpatterns = [
     path('', dummy_main),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', 'users')),
+    path('__debug__/', include(debug_toolbar.urls)),
     re_path(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,
