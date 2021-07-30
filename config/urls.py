@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', 'users')),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('explorer/', include('explorer.urls')),
     re_path(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,
@@ -28,6 +29,3 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if settings.USE_DOCKER:
-    urlpatterns += [path('explorer/', include('explorer.urls'))]

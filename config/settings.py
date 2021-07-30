@@ -162,33 +162,32 @@ INSTALLED_APPS += ['debug_toolbar']
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
 # SQL explorer
-if USE_DOCKER:
-    INSTALLED_APPS += ['explorer']
-    EXPLORER_CONNECTIONS = {'Default': 'default'}
-    EXPLORER_DEFAULT_CONNECTION = 'default'
+INSTALLED_APPS += ['explorer']
+EXPLORER_CONNECTIONS = {'Default': 'default'}
+EXPLORER_DEFAULT_CONNECTION = 'default'
 
-    EXPLORER_SQL_BLACKLIST = (
-        'ALTER',
-        'CREATE TABLE',
-        'DELETE',
-        'DROP',
-        'GRANT',
-        'INSERT INTO',
-        'OWNER TO'
-        'RENAME ',
-        'REPLACE',
-        'SCHEMA',
-        'TRUNCATE',
-        'UPDATE',
-    )
+EXPLORER_SQL_BLACKLIST = (
+    'ALTER',
+    'CREATE TABLE',
+    'DELETE',
+    'DROP',
+    'GRANT',
+    'INSERT INTO',
+    'OWNER TO'
+    'RENAME ',
+    'REPLACE',
+    'SCHEMA',
+    'TRUNCATE',
+    'UPDATE',
+)
 
-    EXPLORER_DEFAULT_ROWS = 1000
+EXPLORER_DEFAULT_ROWS = 1000
 
-    EXPLORER_SCHEMA_EXCLUDE_TABLE_PREFIXES = (
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.admin'
-    )
+EXPLORER_SCHEMA_EXCLUDE_TABLE_PREFIXES = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.admin'
+)
 
-    EXPLORER_SCHEMA_INCLUDE_VIEWS = True
+EXPLORER_SCHEMA_INCLUDE_VIEWS = True
