@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sass_processor',
     'extra_views',
+    'django_unicorn',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [

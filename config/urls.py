@@ -21,6 +21,7 @@ urlpatterns = [
     path('users/', include('users.urls', 'users')),
     path('__debug__/', include(debug_toolbar.urls)),
     path('explorer/', include('explorer.urls')),
+    path("unicorn/", include("django_unicorn.urls")),
     re_path(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,
