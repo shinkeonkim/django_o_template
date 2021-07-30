@@ -20,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', 'users')),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('jet/', include('jet.urls', 'jet')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('explorer/', include('explorer.urls')),
     path("unicorn/", include("django_unicorn.urls")),
     re_path(r'^media/(?P<path>.*)$', serve,

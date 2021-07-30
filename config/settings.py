@@ -9,6 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'TRUE'
 USE_DOCKER = os.environ.get('USE_DOCKER') == 'TRUE'
+PORT = os.environ.get('PORT')
 
 # Deploy settings
 DEPLOY_URL = os.environ.get('DEPLOY_URL')
@@ -24,6 +25,8 @@ CUSTOM_APPS = [
 ]
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,11 +36,14 @@ INSTALLED_APPS = [
     'sass_processor',
     'extra_views',
     'django_unicorn',
+    'django_extensions',
+    'corsheaders',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -192,3 +198,9 @@ EXPLORER_SCHEMA_EXCLUDE_TABLE_PREFIXES = (
 )
 
 EXPLORER_SCHEMA_INCLUDE_VIEWS = True
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    f'http://localhost:{PORT}',
+    f'http://127.0.0.1:{PORT}',
+]
