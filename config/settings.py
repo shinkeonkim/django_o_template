@@ -1,11 +1,12 @@
 import os
+import logging
 from pathlib import Path
 
 from django.contrib.messages import constants as messages
 
 
 # django basic settings
-PROJECT_NAME = 'django_o_template'
+PROJECT_NAME = os.environ.get('PROJECT_NAME')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'corsheaders',
     'silk',
+    'nplusone.ext.django',
 ] + CUSTOM_APPS
 
 MIDDLEWARE = [
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'silk.middleware.SilkyMiddleware',
+    'nplusone.ext.django.NPlusOneMiddleware',
 ]
 
 
@@ -70,7 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+            ]
         },
     },
 ]
@@ -209,3 +212,22 @@ CORS_ALLOWED_ORIGINS = [
     f'http://localhost:{PORT}',
     f'http://127.0.0.1:{PORT}',
 ]
+
+# N+1 Query auto detector
+NPLUSONE_LOGGER = logging.getLogger('nplusone')
+NPLUSONE_LOG_LEVEL = logging.WARN
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'nplusone': {
+            'handlers': ['console'],
+            'level': 'WARN',
+        },
+    },
+}
