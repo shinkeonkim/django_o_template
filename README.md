@@ -2,6 +2,28 @@
 
 creator: koa
 
+## how to set development environment
+
+### use docker
+- set `USE_DOCKER=TRUE` in `.env` file
+- run `docker-compose up -d --build`
+
+### not use docker
+```bash
+> python -m venv venv
+> source venv/bin/activate
+
+> pip install -r requirements.txt
+> python manage.py migrate
+> python manage.py collectstatic
+> python manage.py runserver
+```
+
+## extension pages
+- http://127.0.0.1:{PORT}/silk/
+  - monitoring site
+- http://127.0.0.1:{PORT}/explorer/
+  - SQL explorer site
 ## how to write .env file
 ```
 ## django settings
