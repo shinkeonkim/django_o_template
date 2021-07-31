@@ -95,10 +95,6 @@ class BaseEditionForm(forms.ModelForm):
         return self.initial['password']
 
 
-class BasePasswordEditionForm(forms.ModelForm):
-    pass
-
-
 class UserCreationForm(BaseCreationForm):
     terms = forms.BooleanField(
         label=_('Terms of service'),

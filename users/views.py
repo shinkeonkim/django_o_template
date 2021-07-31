@@ -5,6 +5,7 @@ from django.contrib import auth, messages
 from django.shortcuts import redirect
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.views import PasswordChangeView
 
 
 from config.views import BaseTemplateView, BaseFormView, BaseView
@@ -78,3 +79,8 @@ class UserActivationView(BaseTemplateView):
             return redirect('/')  # TODO: 메세지 추가하기
 
         return super(UserActivationView, self).get(request, *args, **kwargs)
+
+
+class UserPasswordChangeView(PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = '/'
